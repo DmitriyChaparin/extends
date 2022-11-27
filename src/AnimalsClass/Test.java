@@ -1,6 +1,6 @@
 package AnimalsClass;
 
-public class test {
+public class Test {
     public static void main(String[] args) {
         Herbivore gazelle = new Herbivore("Газель", 12, "Степь", 97, "Травоядные");
         Herbivore giraffe = new Herbivore("Жираф", 10, "Саваны", 55, "Травоядные");
@@ -21,7 +21,11 @@ public class test {
         System.out.println(falcon);
         System.out.println(gazelle.equals(giraffe));
         System.out.println(gazelle.equals(horse));
-
+        gazelle.eat();
+        horse.eat();
+        horse.sleep();
+        giraffe.pasture();
+        giraffe.go();
 
 
     }
