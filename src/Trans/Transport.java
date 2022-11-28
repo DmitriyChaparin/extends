@@ -1,12 +1,13 @@
 package Trans;
 
-public class Transport {
-    private String brand;
-    private String model;
+public abstract class Transport {
+    private final String brand;
+    private final String model;
     private final int year;
     private final String country;
     private String color;
     private int maxSpeed;
+    private double fuelPercentage;
 
     public String getBrand() {
         return brand;
@@ -32,11 +33,25 @@ public class Transport {
         return maxSpeed;
     }
 
+    public double getFuelPercentage() {
+        return fuelPercentage;
+    }
+
+    public final void setFuelPercentage(double fuelPercentage) {
+        if (fuelPercentage < 0) {
+            this.fuelPercentage = 0;
+        } else if (fuelPercentage > 100) {
+            this.fuelPercentage = 100;
+        } else {
+            this.fuelPercentage = fuelPercentage;
+        }
+    }
+
     public void setColor(String color) {
         if (color != null && !color.isBlank() && !color.isEmpty()) {
             this.color = color;
         } else {
-           this.color="Введите цвет";
+            this.color = "Введите цвет";
         }
 
     }
@@ -51,14 +66,18 @@ public class Transport {
         }
     }
 
-    public Transport(String brand, String model, int year, String country, String color, int maxSpeed) {
+    public Transport(String brand, String model, int year, String country, String color, int maxSpeed,double fuelPercentage) {
         this.brand = brand;
         this.model = model;
         this.year = year;
         this.country = country;
         setColor(color);
         setMaxSpeed(maxSpeed);
+        setFuelPercentage(fuelPercentage);
     }
+
+    public abstract void refill();
+
 
 
     public void printInfo() {
@@ -69,6 +88,7 @@ public class Transport {
                 ", country='" + country + '\'' +
                 ", color='" + color + '\'' +
                 ", maxSpeed=" + maxSpeed +
+                ", filling type=" + fuelPercentage +
                 '}');
     }
 }
